@@ -1,4 +1,4 @@
-package Reverse_Polish_Notation;
+package Stack_and_Queue;
 
 import java.util.Stack;
 
@@ -26,4 +26,5 @@ public class LC150_Evaluate_Reverse_Polish_Notation {
         }
         return stack.pop() ;
     }
+
 }
