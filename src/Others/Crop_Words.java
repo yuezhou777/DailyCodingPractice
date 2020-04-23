@@ -1,4 +1,4 @@
-package Leetcode;
+package Others;
 
 public class Crop_Words {
     public String solutions(String message, int k) {

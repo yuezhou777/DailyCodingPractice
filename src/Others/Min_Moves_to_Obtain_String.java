@@ -1,4 +1,4 @@
-package Leetcode;
+package Others;
 
 public class Min_Moves_to_Obtain_String {
     public int solution(String s) {
