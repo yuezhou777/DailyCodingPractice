@@ -1,9 +1,8 @@
-package BinarySearch;
+package Sort_and_Search.BinarySearch;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class K_Closest_Position_of_Target {
+public class LC658_Find_K_Closest_Elements {
     public int findClosest(int[] arr, int target) {
         //edge case
         int left = 0;

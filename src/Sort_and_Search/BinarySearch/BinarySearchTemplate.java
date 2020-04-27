@@ -1,4 +1,4 @@
-package BinarySearch;
+package Sort_and_Search.BinarySearch;
 
 public class BinarySearchTemplate { //find target index
     public int findTarget (int[] arr, int target) {

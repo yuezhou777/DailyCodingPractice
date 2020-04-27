@@ -1,4 +1,4 @@
-package BinarySearch;
+package Sort_and_Search.BinarySearch;
 
 public class LC34_First_and_Last_Position_of_Target {
     //s1: 2次bs：logn + logn = O(logn)

@@ -1,4 +1,4 @@
-package BinarySearch;
+package Sort_and_Search.BinarySearch;
 
 //Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element and return its index.
 public class LC162_Find_Peak_Element {
