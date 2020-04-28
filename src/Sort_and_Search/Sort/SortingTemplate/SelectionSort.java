@@ -1,9 +1,10 @@
-package Sort_and_Search.Sort;
+package Sort_and_Search.Sort.SortingTemplate;
 
 public class SelectionSort {
     public void selectionSort(int[] arr, int target) {
-        //edge case
-        for (int i = 0; i < arr.length; i++) {
+        if (arr == null || arr.length <= 1) return;
+
+        for (int i = 0; i < arr.length - 1; i++) { //不需要走到最后一位
             int curSmallestIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j] < arr[curSmallestIndex]) {
