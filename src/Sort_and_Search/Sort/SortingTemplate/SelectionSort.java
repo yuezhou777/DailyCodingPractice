@@ -1,7 +1,7 @@
 package Sort_and_Search.Sort.SortingTemplate;
 
 public class SelectionSort {
-    public void selectionSort(int[] arr, int target) {
+    public void selectionSort(int[] arr, int target) { //int[] array is a pass-by-value copy, so void will be ok
         if (arr == null || arr.length <= 1) return;
 
         for (int i = 0; i < arr.length - 1; i++) { //不需要走到最后一位

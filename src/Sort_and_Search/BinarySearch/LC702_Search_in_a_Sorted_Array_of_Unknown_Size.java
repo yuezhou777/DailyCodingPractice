@@ -7,25 +7,25 @@ package Sort_and_Search.BinarySearch;
  */
 
 public class LC702_Search_in_a_Sorted_Array_of_Unknown_Size {
-    public int search(ArrayReader reader, int target) {
-        //edge case
-        if (reader == null) return -1;
-        int sta = 0;
-        int end = 1;
-        while (reader.get(end) != Integer.MAX_VALUE) {
-            sta = end;
-            end *= 2;
-        }
-
-        while (sta <= end) {
-            int mid = sta + (end - sta) / 2;
-            if (reader.get(mid) != Integer.MAX_VALUE && reader.get(mid) == target) {
-                return mid;
-            } else if (reader.get(mid) != Integer.MAX_VALUE && reader.get(mid) < target) {
-                sta = mid + 1;
-            } else { //reader.get(mid) == Integer.MAX_VALUE || reader.get(mid) > target
-                end = mid - 1;
-            }
-        }
-    }
+//    public int search(ArrayReader reader, int target) {
+//        //edge case
+//        if (reader == null) return -1;
+//        int sta = 0;
+//        int end = 1;
+//        while (reader.get(end) != Integer.MAX_VALUE) {
+//            sta = end;
+//            end *= 2;
+//        }
+//
+//        while (sta <= end) {
+//            int mid = sta + (end - sta) / 2;
+//            if (reader.get(mid) != Integer.MAX_VALUE && reader.get(mid) == target) {
+//                return mid;
+//            } else if (reader.get(mid) != Integer.MAX_VALUE && reader.get(mid) < target) {
+//                sta = mid + 1;
+//            } else { //reader.get(mid) == Integer.MAX_VALUE || reader.get(mid) > target
+//                end = mid - 1;
+//            }
+//        }
+//    }
 }
