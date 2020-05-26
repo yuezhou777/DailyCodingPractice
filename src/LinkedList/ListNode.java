@@ -12,3 +12,19 @@ public class ListNode {
         this.next = next;
     }
 }
+/*
+    public class ListNode<T> {
+        int val;
+        ListNode<T> next;
+        ListNode<T> prev;
+
+        ListNode(){
+            this(0)
+        }
+        ListNode(T val) {
+            this.val = val;
+            this.next = null;
+            this.prev = null;
+        }
+    }
+*/

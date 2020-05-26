@@ -1,6 +1,5 @@
-package PriorityQueue;
+package Stack_and_Queue.PriorityQueue;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 // index i
