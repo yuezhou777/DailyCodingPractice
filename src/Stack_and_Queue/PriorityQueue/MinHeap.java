@@ -106,7 +106,7 @@ public class MinHeap {
             return null;
         }
         int smallestVal = arr[0];
-        arr[arr.length - 1] = arr[0];
+        arr[0] = arr[arr.length - 1];
         percolateDown(0);
         size--;
 
