@@ -1,61 +1,114 @@
 package Sort_and_Search.BFS;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class LC127_Word_Ladder {
-    /*
-思路：把单词的一步一步转换看成图的结点BFS遍历，一层一层变
-     层数是啥？单词对应的层数代表该词经过了多少次变化得来, 每一层只会有一个单词进行变化
-     怎么变？把单词toCharArray(), 每一个单词从a到z轮着换一遍，假如换到了wordList里的词，就做判断：
-         第一种情况：换到的词就是最终所求词，则返回该词的层数
-         第二种情况：换到的词不是最终求的词，则更新词的层数，入列继续换，同时注意从wordList里删掉它，避免再次换的时候匹配出错
-
-            hit
-           /
-        hot---dot---dog
-        /
-      lot---log---cog
-
-综上：实现BFS需要Queue，Set(visited)
-     实现单词与层数的对应关系需要HashMap
-*/
-    //O(n)
-    //O(n)
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        //cc
-        //for every possible change, if the change == endWord, cut the bfs and return level, else, return 0 or exception;
-        //如何记录变化次数（层数）? 1. HashMap<Word, level> 2, HashSet<Word> + int level/*minDist*/ in BFS while loop
-        HashSet<String> wordDict = new HashSet<>();
-        Queue<String> queue = new LinkedList<>();
+    // bidirection BFS
+    public int ladderLengthBi(String beginWord, String endWord, List<String> wordList) {
+        //CC
+        HashSet<String> wordDict = new HashSet<String>();
         for (String word : wordList) {
             wordDict.add(word);
         }
+        if (!wordDict.contains(endWord)) return 0;//优化：提前结束
+
+        HashSet<String> beginSet = new HashSet<String>();
+        HashSet<String> endSet = new HashSet<String>();
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+        int minDist = 1;
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+            if (beginSet.size() > endSet.size()) {
+                HashSet<String> temp = beginSet;
+                beginSet = endSet;
+                endSet = temp;
+            }
+
+            HashSet<String> nextLevel = new HashSet<>();
+            for (String str : beginSet) {
+                for (int i = 0; i < str.length(); i++) {
+                    char[] word = str.toCharArray();
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        word[i] = c;
+                        String newWord = String.valueOf(word);
+                        if (endSet.contains(newWord)) {
+                            return minDist + 1;
+                        }//注意这里两个if并列
+                        if (wordDict.contains(newWord)) {
+                            nextLevel.add(newWord);
+                            wordDict.remove(newWord);
+                        }
+                    }
+                }
+            }
+            beginSet = nextLevel;
+            minDist++;
+        }
+
+        return 0;
+    }
+
+    //1. HashMap<Word, level>
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        Set<String> validWords = new HashSet<>(wordList);
+        if (!validWords.contains(endWord)) return 0;
+        Map<String, Integer> map = new HashMap<>();
+        map.put(beginWord, 1);
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(beginWord);
+
+        while (!queue.isEmpty()) {
+            String curWord = queue.poll();
+            int curLevel = map.get(curWord);
+            for (int i = 0; i < curWord.length(); i++) {
+                char[] wordUnit = curWord.toCharArray();
+                for (char j = 'a'; j <= 'z'; j++) {
+                    wordUnit[i] = j;
+                    String tempWord = new String(wordUnit); //记住API
+                    if (validWords.contains(tempWord)) {
+                        if (tempWord.equals(endWord)) {
+                            return curLevel + 1;
+                        }
+                        map.put(tempWord, curLevel + 1);
+                        queue.offer(tempWord);
+                        validWords.remove(tempWord);
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    //2. HashSet<Word> + int level/*minDist in BFS while loop
+    public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
+        //cc
+        HashSet<String> wordDict = new HashSet<>();
+        for (String word: wordList) {
+            wordDict.add(word);
+        }
+        Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
         int minDist = 1;
 
-        //BFS
         while (!queue.isEmpty()) {
             int size = queue.size();
             while (size-- > 0) {
                 String curWord = queue.poll();
-                char[] wordArr = curWord.toCharArray();
-                for (int i = 0; i < wordArr.length; i++) {
-                    char temp = wordArr[i];
+                char[] wordChar = curWord.toCharArray();
+                for (int i = 0; i < wordChar.length; i++) {
+                    char temp = wordChar[i];
                     for (char c = 'a'; c <= 'z'; c++) {
-                        wordArr[i] = c;
-                        String newWord = String.valueOf(temp);
-                        if (c != temp && wordDict.contains(newWord)) { //弄清楚这里的判断条件
+                        wordChar[i] = c;
+                        String newWord = String.valueOf(wordChar);
+                        if (c != temp && wordDict.contains(newWord)) {
                             if (newWord.equals(endWord)) {
-                                return minDist + 1; //注意结束状态+1
+                                return minDist + 1;
                             }
-                            wordDict.remove(newWord); //思考为什么remove？不remove会无限循环
+                            wordDict.remove(newWord);
                             queue.offer(newWord);
                         }
                     }
-                    wordArr[i] = temp;
+                    wordChar[i] = temp;
                 }
             }
             minDist++;
@@ -63,4 +116,5 @@ public class LC127_Word_Ladder {
 
         return 0; //throw new IllegalStateException("");
     }
+
 }
