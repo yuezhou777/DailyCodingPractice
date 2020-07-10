@@ -12,7 +12,7 @@ public class LC148_Sort_List {
         return merge(pre, post);
     }
 
-    public ListNode findMid(ListNode head) {
+    private ListNode findMid(ListNode head) {
         ListNode slow = head;
         ListNode fast = head.next;
         while (fast.next != null && fast.next.next != null) {
@@ -22,7 +22,7 @@ public class LC148_Sort_List {
         return slow;
     }
 
-    public ListNode merge(ListNode l1, ListNode l2) {
+    private ListNode merge(ListNode l1, ListNode l2) {
         if (l1 == null) { return l2;}
         if (l2 == null) { return l1;}
         if (l1.val < l2.val) {
