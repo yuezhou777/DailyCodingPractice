@@ -21,7 +21,7 @@ public class LC150_Evaluate_Reverse_Polish_Notation {
                 int num1 = stack.pop();
                 stack.push(num1 / num2);
             }else {
-                stack.push(Integer.parseInt(s));
+                stack.push(Integer.parseInt(s)); //Integer.valueOf(s);
             }
         }
         return stack.pop() ;

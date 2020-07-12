@@ -14,15 +14,10 @@ public class LC155_Min_Stack {
     }
 
     public void push(int x) {
-        stack.push(x);
-        if(!minStack.isEmpty()) {
-            int min = minStack.peek();
-            if(x <= min) {
-                minStack.push(x);
-            }
-        }else {
+        if (minStack.isEmpty() || x <= minStack.peek()) { //peek()会抛exception
             minStack.push(x);
         }
+        stack.push(x);
     }
 
     public void pop() {
