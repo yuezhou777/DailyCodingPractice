@@ -20,4 +20,17 @@ public class Traversal_PostOrder {
         List<Integer> res = new ArrayList<>(list);
         return res;
     }
+
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        helper(res, root);
+        return res;
+    }
+
+    private void helper(List<Integer> list, TreeNode root) {
+        if (root == null) return;
+        helper(list, root.left);
+        helper(list, root.right);
+        list.add(root.val);
+    }
 }
