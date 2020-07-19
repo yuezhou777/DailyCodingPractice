@@ -4,6 +4,25 @@ import java.util.*;
 public class Traversal_PostOrder {
     public List<Integer> postorderTraversal(TreeNode root) {
         if (root == null) return new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                res.add(root.val);
+                stack.push(root);
+                root = root.right;
+            } else {
+                root = stack.pop();
+                root = root.left;
+            }
+        }
+
+        Collections.reverse(res);
+        return res;
+    }
+
+    public List<Integer> postorderTraversall(TreeNode root) {
+        if (root == null) return new ArrayList<>();
         LinkedList<Integer> list = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
