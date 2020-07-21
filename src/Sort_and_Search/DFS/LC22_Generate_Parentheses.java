@@ -33,8 +33,8 @@ public class LC22_Generate_Parentheses {
         //fail
         if (l + r == 2 * n) return;
 
+        int len = sb.length();
         if (l < n) {
-            int len = sb.length();
             sb.append('(');
             dfs(res, n, l + 1, r, sb);
             sb.setLength(len);
@@ -42,7 +42,6 @@ public class LC22_Generate_Parentheses {
         }
 
         if (r < l) {
-            int len = sb.length();
             sb.append(')');
             dfs(res, n, l, r + 1, sb);
             sb.setLength(len);
