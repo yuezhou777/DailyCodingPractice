@@ -6,8 +6,8 @@ import java.util.List;
 public class LC22_Generate_Parentheses {
     /*
     delta = *(l) - *(r)
-        at the end, delta == 0;
-        in the middle, delta >= 0;
+        at the end, delta should == 0;
+        in the middle, delta should >= 0;
         当多种括号对应匹配时不适用
 
              {}

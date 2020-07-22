@@ -8,7 +8,8 @@ import java.util.Set;
 public class LC301_Remove_Invalid_Parentheses {
     /*
 open = *(l) - *(r)
-    at the end, open == 0;
+    at the end, open should == 0;
+    in the middle, open should >= 0;
     当多种括号对应匹配时不适用
 */
     public List<String> removeInvalidParentheses(String s) {
@@ -66,4 +67,8 @@ open = *(l) - *(r)
             sb.setLength(len);
         }
     }
+
+    //follow up求任意一个解，可用stack
+    //从左到右遍历删右括号，
+    //从右往左遍历删左括号，碰见) delta+1, ( delta-1
 }
