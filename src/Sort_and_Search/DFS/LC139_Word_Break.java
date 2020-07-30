@@ -26,7 +26,7 @@ public class LC139_Word_Break {
         return false;
     }
 
-    //1. backtracking + mem O(n)
+    //2. backtracking + mem O(n)
     //mem[idx] = [idx, len) => t/f
     public boolean wordBreak2(String s, List<String> wordDict) {
         if (s == null || s.length() == 0 || wordDict == null || wordDict.size() == 0) return false;
@@ -47,5 +47,23 @@ public class LC139_Word_Break {
         }
         mem[idx] = false; //成对出现
         return false;
+    }
+
+    //3. DP
+    // leetcode_
+    //         i
+    // j->
+    // tffftffft
+    public boolean wordBreak3(String s, List<String> wordDict) {
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && wordDict.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                }
+            }
+        }
+        return dp[s.length()];
     }
 }
