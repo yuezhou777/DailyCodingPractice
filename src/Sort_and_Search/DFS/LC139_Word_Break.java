@@ -54,6 +54,7 @@ public class LC139_Word_Break {
     //         i
     // j->
     // tffftffft
+    //O(n^2)
     public boolean wordBreak3(String s, List<String> wordDict) {
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
@@ -65,5 +66,20 @@ public class LC139_Word_Break {
             }
         }
         return dp[s.length()];
+    }
+
+    //4.DP: bottom up
+    public boolean wordBrea4(String s, List<String> wordDict) {
+        int len = s.length();
+        boolean[] dp = new boolean[len + 1];
+        dp[len] = true;
+        for (int i = len - 1; i >= 0; i--) {
+            for (int j = i + 1; j <= len; j++) {
+                if (dp[j] && wordDict.contains(s.substring(i,j))) {
+                    dp[i] = true;
+                }
+            }
+        }
+        return dp[0];
     }
 }
