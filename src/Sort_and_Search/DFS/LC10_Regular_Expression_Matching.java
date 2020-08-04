@@ -39,6 +39,7 @@ public class LC10_Regular_Expression_Matching {
     }
 
     //DFS pruning
+    //pruning 是2倍DP时间复杂度：top down + bottom up
     public boolean isMatch2(String s, String p) {
         if (s == null || p == null) return false;
         Boolean[][] mem = new Boolean[s.length() + 1][p.length() + 1]; //boundry is len + 1 beacuse in dfs() idxS is likely to be lenS

@@ -77,6 +77,7 @@ public class LC139_Word_Break {
             for (int j = i + 1; j <= len; j++) {
                 if (dp[j] && wordDict.contains(s.substring(i,j))) {
                     dp[i] = true;
+                    break;
                 }
             }
         }
