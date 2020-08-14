@@ -1,4 +1,4 @@
-package Array_and_String;
+package Array_and_String.Anagram_Palindrome_Isomorphic;
 
 public class LC205_Isomorphic_Strings {
     public boolean isIsomorphic(String s, String t) {

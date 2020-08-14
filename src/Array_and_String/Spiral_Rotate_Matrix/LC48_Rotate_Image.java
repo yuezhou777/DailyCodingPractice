@@ -1,4 +1,4 @@
-package Array_and_String;
+package Array_and_String.Spiral_Rotate_Matrix;
 
 public class LC48_Rotate_Image {
     //S1: By Place
